@@ -4,6 +4,7 @@ import lat.sal.library.library_item_service.dto.*;
 import lat.sal.library.library_item_service.exception.OrderFailedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -27,6 +28,7 @@ public class LibraryItemService {
         this.dao = dao;
     }
 
+    @Transactional
     public void borrowItems(long userId, List<Long> itemIds) throws OrderFailedException {
         validateItemCountInOrder(itemIds.size());
         validateNoUnpaidLateFees(userId);
@@ -41,6 +43,7 @@ public class LibraryItemService {
         insertBorrowOrder(userId, itemIds);
     }
 
+    @Transactional
     public void returnItems(long userId, List<Long> itemIds) throws OrderFailedException {
         List<BorrowRecord> borrowRecords = dao.selectCurrentBorrowRecordsByIds(userId, itemIds);
         validateItemsAreBorrowed(itemIds, borrowRecords);

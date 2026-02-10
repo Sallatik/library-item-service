@@ -22,3 +22,5 @@ Next steps I would take to turn it into proper usable service:
 4. make error messages configurable in multiple languages
 5. optionally include session control, so this service can be called directly by front-end (or this can be handled by another component)
 6. add unit tests for service layer
+7. make returnItems method return info to the user about inserted late fees
+7. add cron job to detect overdue items and emit events using kafka for a separate service to contact users (for example via SMS)
