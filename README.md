@@ -2,6 +2,7 @@
 
 This repo contains code snippets with main business logic of a microservice responsible for tracking physical items (such as a specific copy of a book or dvd) in a library.
 
+This service can't be called by frontend directly because it does not have authentication/session logic, it is meant to be called by other services internally.
 
 Responsibilities of item-service:
 - Allow users to borrow items within configured limits.
